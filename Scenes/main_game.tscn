@@ -4,6 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://dm6cmy7foes7y" path="res://Tiles/L1Map/TX Tileset Grass.png" id="2_0e3vx"]
 [ext_resource type="Texture2D" uid="uid://12imbg3y7l7h" path="res://Tiles/L1Map/TX Tileset Wall.png" id="3_6j5ir"]
 [ext_resource type="Texture2D" uid="uid://bxmfvu5wykkgp" path="res://Tiles/L1Map/TX Props.png" id="4_6j5ir"]
+[ext_resource type="PackedScene" uid="uid://l5p4hclbap8i" path="res://Scenes/obelisk.tscn" id="5_mgc0q"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_mgc0q"]
 texture = ExtResource("2_0e3vx")
@@ -645,3 +646,7 @@ tile_set = SubResource("TileSet_18r40")
 [node name="TileMapLayer5" type="TileMapLayer" parent="Node" unique_id=110824916]
 tile_map_data = PackedByteArray("AAAHAPz/AQAQAAAAAAA=")
 tile_set = SubResource("TileSet_18r40")
+
+[node name="obelisk" parent="." unique_id=388328139 instance=ExtResource("5_mgc0q")]
+z_index = 2
+position = Vector2(28, -81)
