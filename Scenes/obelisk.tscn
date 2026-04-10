@@ -2,61 +2,64 @@
 
 [ext_resource type="Texture2D" uid="uid://ddc3csiil28qh" path="res://sprites/downloaded/FlyingObelisk_Simple/FlyingObelisk_no_lightnings_no_letter.png" id="1_xr68i"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_ddq3d"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_xr68i"]
 atlas = ExtResource("1_xr68i")
 region = Rect2(0, 0, 200, 400)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_cxjtg"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_ddq3d"]
 atlas = ExtResource("1_xr68i")
 region = Rect2(200, 0, 200, 400)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_1vcfa"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_cxjtg"]
 atlas = ExtResource("1_xr68i")
 region = Rect2(400, 0, 200, 400)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_jru61"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_1vcfa"]
 atlas = ExtResource("1_xr68i")
 region = Rect2(600, 0, 200, 400)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5i5ok"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_jru61"]
 atlas = ExtResource("1_xr68i")
 region = Rect2(800, 0, 200, 400)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_y5o2b"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_5i5ok"]
 atlas = ExtResource("1_xr68i")
 region = Rect2(1000, 0, 200, 400)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_i8kj3"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_y5o2b"]
 atlas = ExtResource("1_xr68i")
 region = Rect2(1200, 0, 200, 400)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_7rqto"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_i8kj3"]
 atlas = ExtResource("1_xr68i")
 region = Rect2(1400, 0, 200, 400)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_flcew"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_7rqto"]
 atlas = ExtResource("1_xr68i")
 region = Rect2(1600, 0, 200, 400)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_64bcb"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_flcew"]
 atlas = ExtResource("1_xr68i")
 region = Rect2(1800, 0, 200, 400)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_r3kbd"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_64bcb"]
 atlas = ExtResource("1_xr68i")
 region = Rect2(2000, 0, 200, 400)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_t326a"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_r3kbd"]
 atlas = ExtResource("1_xr68i")
 region = Rect2(2200, 0, 200, 400)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_e2jjf"]
+[sub_resource type="AtlasTexture" id="AtlasTexture_t326a"]
 atlas = ExtResource("1_xr68i")
 region = Rect2(2400, 0, 200, 400)
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_vddop"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_e2jjf"]
 animations = [{
 "frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_xr68i")
+}, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_ddq3d")
 }, {
@@ -92,26 +95,21 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_t326a")
-}, {
-"duration": 1.0,
-"texture": SubResource("AtlasTexture_e2jjf")
 }],
 "loop": true,
 "name": &"default",
-"speed": 8.0
+"speed": 5.0
 }]
 
-[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_xr68i"]
-radius = 8.0
-height = 56.0
+[sub_resource type="CircleShape2D" id="CircleShape2D_vddop"]
 
-[node name="obelisk" type="Area2D" unique_id=388328139]
+[node name="obelisk" type="Area2D" unique_id=930403929]
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1013218289]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=544883224]
+position = Vector2(1.0000005, -34)
 scale = Vector2(0.2, 0.2)
-sprite_frames = SubResource("SpriteFrames_vddop")
-frame_progress = 0.822514
+sprite_frames = SubResource("SpriteFrames_e2jjf")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1028986667]
-position = Vector2(1, 6)
-shape = SubResource("CapsuleShape2D_xr68i")
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1808047467]
+position = Vector2(2, -14)
+shape = SubResource("CircleShape2D_vddop")

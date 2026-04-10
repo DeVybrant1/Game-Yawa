@@ -647,6 +647,6 @@ tile_set = SubResource("TileSet_18r40")
 tile_map_data = PackedByteArray("AAAHAPz/AQAQAAAAAAA=")
 tile_set = SubResource("TileSet_18r40")
 
-[node name="obelisk" parent="." unique_id=388328139 instance=ExtResource("5_mgc0q")]
-z_index = 2
-position = Vector2(28, -81)
+[node name="obelisk" parent="." unique_id=930403929 instance=ExtResource("5_mgc0q")]
+z_index = 1
+position = Vector2(-49, -18)
