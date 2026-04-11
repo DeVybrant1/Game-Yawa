@@ -1,0 +1,131 @@
+pixelButton.png
+size: 384, 1728
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+achievementButton
+  rotate: false
+  xy: 0, 0
+  size: 192, 192
+  orig: 192, 192
+  offset: 0, 0
+  index: -1
+checkBox-checked
+  rotate: false
+  xy: 192, 0
+  size: 192, 192
+  orig: 192, 192
+  offset: 0, 0
+  index: -1
+closeButton
+  rotate: false
+  xy: 0, 192
+  size: 192, 192
+  orig: 192, 192
+  offset: 0, 0
+  index: -1
+downButton
+  rotate: false
+  xy: 192, 192
+  size: 192, 192
+  orig: 192, 192
+  offset: 0, 0
+  index: -1
+emptyButton-disabled
+  rotate: false
+  xy: 0, 384
+  size: 192, 192
+  orig: 192, 192
+  offset: 0, 0
+  index: -1
+emptyButton
+  rotate: false
+  xy: 192, 384
+  size: 192, 192
+  orig: 192, 192
+  offset: 0, 0
+  index: -1
+leftButton
+  rotate: false
+  xy: 0, 576
+  size: 192, 192
+  orig: 192, 192
+  offset: 0, 0
+  index: -1
+menuButton
+  rotate: false
+  xy: 192, 576
+  size: 192, 192
+  orig: 192, 192
+  offset: 0, 0
+  index: -1
+musicButton
+  rotate: false
+  xy: 0, 768
+  size: 192, 192
+  orig: 192, 192
+  offset: 0, 0
+  index: -1
+musicButtonUnCheck
+  rotate: false
+  xy: 192, 768
+  size: 192, 192
+  orig: 192, 192
+  offset: 0, 0
+  index: -1
+nextButton
+  rotate: false
+  xy: 0, 960
+  size: 192, 192
+  orig: 192, 192
+  offset: 0, 0
+  index: -1
+pauseButton
+  rotate: false
+  xy: 192, 960
+  size: 192, 192
+  orig: 192, 192
+  offset: 0, 0
+  index: -1
+playButton
+  rotate: false
+  xy: 0, 1152
+  size: 192, 192
+  orig: 192, 192
+  offset: 0, 0
+  index: -1
+reloadButton
+  rotate: false
+  xy: 192, 1152
+  size: 192, 192
+  orig: 192, 192
+  offset: 0, 0
+  index: -1
+rightButton
+  rotate: false
+  xy: 0, 1344
+  size: 192, 192
+  orig: 192, 192
+  offset: 0, 0
+  index: -1
+settingButton
+  rotate: false
+  xy: 192, 1344
+  size: 192, 192
+  orig: 192, 192
+  offset: 0, 0
+  index: -1
+soundButton
+  rotate: false
+  xy: 0, 1536
+  size: 192, 192
+  orig: 192, 192
+  offset: 0, 0
+  index: -1
+upButton
+  rotate: false
+  xy: 192, 1536
+  size: 192, 192
+  orig: 192, 192
+  offset: 0, 0
+  index: -1

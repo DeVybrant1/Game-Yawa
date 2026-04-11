@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://l5p4hclbap8i" path="res://Scenes/obelisk.tscn" id="5_mgc0q"]
 [ext_resource type="PackedScene" uid="uid://dkalxe8appf30" path="res://Scenes/mage_guardian.tscn" id="6_bb2iq"]
 [ext_resource type="PackedScene" uid="uid://dn86vjmw110ec" path="res://Scenes/mutant.tscn" id="7_18r40"]
+[ext_resource type="PackedScene" uid="uid://dd3ycmokrfbgk" path="res://Scenes/ui/Main_menu/Main_menu.tscn" id="8_6y7pd"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_18r40"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -936,3 +937,15 @@ position = Vector2(6, -138)
 [node name="mutant" parent="Djinn" unique_id=1168828391 instance=ExtResource("7_18r40")]
 z_index = 2
 position = Vector2(208, -85)
+
+[node name="MainMenu" parent="." unique_id=747957155 instance=ExtResource("8_6y7pd")]
+z_index = 2
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -283.5
+offset_top = -160.0
+offset_right = 283.5
+offset_bottom = 160.0

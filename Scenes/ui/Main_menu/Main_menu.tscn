@@ -1,0 +1,73 @@
+[gd_scene format=3 uid="uid://dd3ycmokrfbgk"]
+
+[ext_resource type="Texture2D" uid="uid://11r23tv1rgtv" path="res://Scenes/menu3.png" id="1_ro7et"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qxuwx"]
+texture = ExtResource("1_ro7et")
+modulate_color = Color(0.35906893, 0.35906914, 0.35906902, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qxuwx"]
+bg_color = Color(1, 1, 1, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+shadow_size = 5
+shadow_offset = Vector2(0, 3.41)
+
+[node name="MainMenu" type="Control" unique_id=747957155]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="." unique_id=1945530304]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_qxuwx")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=516390143]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -75.75
+offset_top = -56.0
+offset_right = 75.75
+offset_bottom = 56.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 4
+
+[node name="Button" type="Button" parent="VBoxContainer" unique_id=108692936]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_qxuwx")
+text = "Start"
+
+[node name="Button2" type="Button" parent="VBoxContainer" unique_id=787683580]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_qxuwx")
+text = "Option
+"
+
+[node name="Button3" type="Button" parent="VBoxContainer" unique_id=1843821356]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("StyleBoxFlat_qxuwx")
+text = "Exit"
