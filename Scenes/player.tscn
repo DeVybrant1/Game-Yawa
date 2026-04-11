@@ -17,6 +17,7 @@
 [ext_resource type="Texture2D" uid="uid://bsx7tn76p7jri" path="res://sprites/Player/RUN/run_up.png" id="8_7dp3o"]
 [ext_resource type="Texture2D" uid="uid://s3tw2twocpj3" path="res://sprites/Player/ATTACK 2/attack2_right.png" id="8_fs7ks"]
 [ext_resource type="Texture2D" uid="uid://bpbapsayhjxeh" path="res://sprites/Player/ATTACK 2/attack2_up.png" id="9_l6n3p"]
+[ext_resource type="Texture2D" uid="uid://r5ouh1tvnqgm" path="res://sprites/Shadow.png" id="18_igrcy"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3uvy8"]
 atlas = ExtResource("2_ukyrk")
@@ -997,8 +998,14 @@ animations = [{
 "speed": 14.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_qqcod"]
+radius = 6.0
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gymyn"]
 size = Vector2(10, 26)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_igrcy"]
+size = Vector2(678, 392)
 
 [node name="Player" type="CharacterBody2D" unique_id=1439054031]
 script = ExtResource("1_f1ek2")
@@ -1008,8 +1015,25 @@ position = Vector2(0, -19)
 sprite_frames = SubResource("SpriteFrames_tx1dd")
 animation = &"idle_r"
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1895805501]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1470262586]
+position = Vector2(0, -6)
+shape = SubResource("CircleShape2D_qqcod")
+
+[node name="hithurtbox" type="Area2D" parent="." unique_id=691738041]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hithurtbox" unique_id=1895805501]
+visible = false
 position = Vector2(0, -14)
 shape = SubResource("RectangleShape2D_gymyn")
+
+[node name="Shadow" type="Sprite2D" parent="." unique_id=1908250839]
+position = Vector2(-1, -12)
+texture = ExtResource("18_igrcy")
+
+[node name="raytrace" type="Area2D" parent="." unique_id=805847262]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="raytrace" unique_id=375248904]
+position = Vector2(-1, -18)
+shape = SubResource("RectangleShape2D_igrcy")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]

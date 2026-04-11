@@ -212,12 +212,27 @@ animations = [{
 "speed": 5.0
 }]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_dpc5n"]
+radius = 14.035668
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_dpc5n"]
+size = Vector2(29, 54)
+
 [node name="mage guardian" type="CharacterBody2D" unique_id=921066911]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=766858120]
 position = Vector2(0, -28)
 sprite_frames = SubResource("SpriteFrames_1eug2")
 animation = &"first"
+autoplay = "first"
 frame_progress = 0.6931378
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=428078162]
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="." unique_id=1899809914]
+position = Vector2(0, -12)
+shape = SubResource("CircleShape2D_dpc5n")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=331688598]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=428078162]
+position = Vector2(0.5, -31)
+shape = SubResource("RectangleShape2D_dpc5n")
