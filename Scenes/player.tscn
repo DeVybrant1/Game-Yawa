@@ -18,6 +18,7 @@
 [ext_resource type="Texture2D" uid="uid://s3tw2twocpj3" path="res://sprites/Player/ATTACK 2/attack2_right.png" id="8_fs7ks"]
 [ext_resource type="Texture2D" uid="uid://bpbapsayhjxeh" path="res://sprites/Player/ATTACK 2/attack2_up.png" id="9_l6n3p"]
 [ext_resource type="Texture2D" uid="uid://r5ouh1tvnqgm" path="res://sprites/Shadow.png" id="18_igrcy"]
+[ext_resource type="Script" uid="uid://b2vycyaepnfqh" path="res://Scripts/health.gd" id="19_fs7ks"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3uvy8"]
 atlas = ExtResource("2_ukyrk")
@@ -895,6 +896,9 @@ shape = SubResource("RectangleShape2D_l6n3p")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node/hit_N" unique_id=175347324]
 position = Vector2(-1.5, -26)
 shape = SubResource("RectangleShape2D_olqyp")
+
+[node name="health" type="Node" parent="." unique_id=1602790289]
+script = ExtResource("19_fs7ks")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]

@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bnegovruhw3a4" path="res://sprites/Enemy1/Run/run_N.png" id="10_jnbu6"]
 [ext_resource type="Texture2D" uid="uid://bcm4ceh3q3e6f" path="res://sprites/Enemy1/Run/run_S.png" id="11_fx77j"]
 [ext_resource type="Texture2D" uid="uid://d3hld342hmy0t" path="res://sprites/Enemy1/Run/run_W.png" id="12_ekewc"]
+[ext_resource type="Script" uid="uid://b2vycyaepnfqh" path="res://Scripts/health.gd" id="13_m32na"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_v4e5s"]
 atlas = ExtResource("1_d5dam")
@@ -2424,7 +2425,7 @@ size = Vector2(59, 36)
 [node name="mutant" type="CharacterBody2D" unique_id=1168828391]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1052109056]
-position = Vector2(-7.0000005, -4.000001)
+position = Vector2(-6, -4)
 scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_6ljyp")
 animation = &"attack_E"
@@ -2473,3 +2474,6 @@ shape = SubResource("RectangleShape2D_h44lh")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node/hit_N" unique_id=174968959]
 position = Vector2(-1.5, -26)
 shape = SubResource("RectangleShape2D_0u6jp")
+
+[node name="health" type="Node" parent="." unique_id=2129979812]
+script = ExtResource("13_m32na")

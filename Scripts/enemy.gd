@@ -115,10 +115,3 @@ func _play_idle():
 func _play_run():
 	if not attacking:
 		anim.play("run_" + facing)
-
-
-# =====================
-# AGGRO CONTROL (FROM PLAYER RAYTRACE)
-# =====================
-func set_aggro(state: bool):
-	player_in_aggro = state
