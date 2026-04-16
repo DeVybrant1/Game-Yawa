@@ -881,7 +881,7 @@ texture = ExtResource("18_igrcy")
 script = ExtResource("20_wpjfl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node/hit_S" unique_id=400444528]
-position = Vector2(-1.5, -3)
+position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_fs7ks")
 
 [node name="hit_E" type="Area2D" parent="Node" unique_id=149624601]
