@@ -1,0 +1,120 @@
+[gd_scene format=3 uid="uid://bkrqatheqbn7g"]
+
+[ext_resource type="Texture2D" uid="uid://bxmfvu5wykkgp" path="res://Tiles/L1Map/TX Props.png" id="1_twpm2"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_8uwsg"]
+radius = 35.22783
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bp1or"]
+atlas = ExtResource("1_twpm2")
+region = Rect2(96, 0, 32, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_trlyu"]
+atlas = ExtResource("1_twpm2")
+region = Rect2(96, 64, 32, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_x7mpe"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_bp1or")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_trlyu")
+}],
+"loop": false,
+"name": &"open",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bv3sb"]
+size = Vector2(32, 20)
+
+[sub_resource type="Animation" id="Animation_day8l"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-5, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(-34, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="Animation" id="Animation_t3ekh"]
+resource_name = "hover"
+length = 0.4
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(-5, -0.25, 0, 0.25, 0, -5, -0.06666667, 0, 0, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(2, 2),
+"points": PackedFloat32Array(-34, -0.25, 0, 0.25, 0, -52, -0.06666667, 3.0000002, 0, 0),
+"times": PackedFloat32Array(0, 0.4)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x6u83"]
+_data = {
+&"RESET": SubResource("Animation_day8l"),
+&"hover": SubResource("Animation_t3ekh")
+}
+
+[node name="Chest" type="Node2D" unique_id=83112387]
+
+[node name="Label" type="Label" parent="." unique_id=1879214003]
+offset_left = -5.0
+offset_top = -34.0
+offset_right = 23.0
+offset_bottom = -11.0
+text = "E"
+
+[node name="Area2D" type="Area2D" parent="." unique_id=64366115]
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=396290753]
+position = Vector2(0, -13)
+shape = SubResource("CircleShape2D_8uwsg")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=888399346]
+position = Vector2(0, -29)
+sprite_frames = SubResource("SpriteFrames_x7mpe")
+animation = &"open"
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1920088398]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=613762996]
+position = Vector2(0, -10)
+shape = SubResource("RectangleShape2D_bv3sb")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=646984603]
+libraries/ = SubResource("AnimationLibrary_x6u83")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

@@ -7,9 +7,11 @@
 [ext_resource type="Texture2D" uid="uid://bxmfvu5wykkgp" path="res://Tiles/L1Map/TX Props.png" id="4_6j5ir"]
 [ext_resource type="Texture2D" uid="uid://iyk76ks3420v" path="res://Tiles/L1Map/TX Tileset Stone Ground.png" id="4_r0mdn"]
 [ext_resource type="PackedScene" uid="uid://dkalxe8appf30" path="res://Scenes/mage_guardian.tscn" id="6_bb2iq"]
+[ext_resource type="PackedScene" uid="uid://bkrqatheqbn7g" path="res://chest.tscn" id="7_0xqxu"]
 [ext_resource type="PackedScene" uid="uid://dn86vjmw110ec" path="res://Scenes/mutant.tscn" id="7_18r40"]
 [ext_resource type="PackedScene" uid="uid://b4ty2tnewtj3o" path="res://Scenes/ui/Main_menu/fade_transition.tscn" id="8_6y7pd"]
 [ext_resource type="Script" uid="uid://da5q31qola6ov" path="res://Scripts/seeker.gd" id="9_r0mdn"]
+[ext_resource type="Script" uid="uid://dwlif2jhoe1b8" path="res://Scripts/chest.gd" id="12_tpqse"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_73nn6"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -1112,6 +1114,11 @@ texture = ExtResource("4_6j5ir")
 16:5/0 = 0
 16:11/size_in_atlas = Vector2i(2, 3)
 16:11/0 = 0
+6:0/size_in_atlas = Vector2i(2, 4)
+6:0/animation_columns = 1
+6:0/animation_frame_0/duration = 1.0
+6:0/animation_frame_1/duration = 1.0
+6:0/0 = 0
 
 [sub_resource type="TileSet" id="TileSet_18r40"]
 physics_layer_0/collision_layer = 1
@@ -1145,7 +1152,7 @@ tile_map_data = PackedByteArray("AAADAAwAAAACAAwAAAALAAwAAAACAAwAAAATAAwAAAACAAw
 tile_set = SubResource("TileSet_73nn6")
 
 [node name="TileMapLayer3" type="TileMapLayer" parent="Tiles" unique_id=1331195940]
-tile_map_data = PackedByteArray("AAAHAP3/AQAWABAAAAA=")
+tile_map_data = PackedByteArray("AAAHAP3/AQAWABAAAAAVAPD/AQAGAAAAAAA=")
 tile_set = SubResource("TileSet_18r40")
 
 [node name="TileMapLayer4" type="TileMapLayer" parent="Tiles" unique_id=1325925349]
@@ -1177,3 +1184,8 @@ radius = 132.68
 
 [node name="Fade_transition" parent="." unique_id=1839511524 instance=ExtResource("8_6y7pd")]
 z_index = 2
+
+[node name="Chest" parent="." unique_id=83112387 instance=ExtResource("7_0xqxu")]
+z_index = 1
+position = Vector2(138, 140)
+script = ExtResource("12_tpqse")
