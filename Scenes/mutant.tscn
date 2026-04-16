@@ -3521,6 +3521,7 @@ shape = SubResource("CircleShape2D_px4bq")
 
 [node name="hurtbox" type="Area2D" parent="." unique_id=573171356]
 visible = false
+collision_mask = 8
 script = ExtResource("13_0u6jp")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="hurtbox" unique_id=1489065331]
@@ -3540,6 +3541,7 @@ shape = SubResource("CircleShape2D_3iiui")
 
 [node name="hit_S" type="Area2D" parent="Node" unique_id=1933629475]
 visible = false
+collision_layer = 4
 script = ExtResource("14_livox")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node/hit_S" unique_id=1225230256]
@@ -3548,6 +3550,7 @@ shape = SubResource("RectangleShape2D_d5dam")
 
 [node name="hit_E" type="Area2D" parent="Node" unique_id=217525037]
 visible = false
+collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node/hit_E" unique_id=1815534856]
 position = Vector2(21.5, -14.75)
@@ -3555,6 +3558,7 @@ shape = SubResource("RectangleShape2D_m32na")
 
 [node name="hit_W" type="Area2D" parent="Node" unique_id=1543576320]
 visible = false
+collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node/hit_W" unique_id=252922103]
 position = Vector2(-22, -14.5)
@@ -3562,6 +3566,7 @@ shape = SubResource("RectangleShape2D_h44lh")
 
 [node name="hit_N" type="Area2D" parent="Node" unique_id=871644310]
 visible = false
+collision_layer = 4
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node/hit_N" unique_id=174968959]
 position = Vector2(-1.5, -26)

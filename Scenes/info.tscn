@@ -1,0 +1,55 @@
+[gd_scene format=3 uid="uid://dqahtiad2xby1"]
+
+[ext_resource type="Texture2D" uid="uid://bfd1wy0c27lg6" path="res://sprites/baraka.png" id="1_oj2s1"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ugdrp"]
+atlas = ExtResource("1_oj2s1")
+region = Rect2(0, 0, 66, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qjrxf"]
+atlas = ExtResource("1_oj2s1")
+region = Rect2(66, 0, 66, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ahul7"]
+atlas = ExtResource("1_oj2s1")
+region = Rect2(132, 0, 66, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wjprj"]
+atlas = ExtResource("1_oj2s1")
+region = Rect2(198, 0, 66, 66)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nmlck"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ugdrp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qjrxf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ahul7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wjprj")
+}],
+"loop": true,
+"name": &"default",
+"speed": 6.0
+}]
+
+[node name="info" type="CanvasLayer" unique_id=1633229787]
+
+[node name="Control" type="Control" parent="." unique_id=482009949]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 592.0
+offset_top = 6.0
+offset_right = 632.0
+offset_bottom = 46.0
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Control" unique_id=46965386]
+position = Vector2(18, 25)
+scale = Vector2(0.7348487, 0.6818182)
+sprite_frames = SubResource("SpriteFrames_nmlck")
+autoplay = "default"

@@ -865,6 +865,7 @@ position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_qqcod")
 
 [node name="hurtbox" type="Area2D" parent="." unique_id=691738041]
+collision_mask = 4
 script = ExtResource("18_olqyp")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox" unique_id=1895805501]
@@ -878,6 +879,7 @@ texture = ExtResource("18_igrcy")
 [node name="Node" type="Node" parent="." unique_id=779226370]
 
 [node name="hit_S" type="Area2D" parent="Node" unique_id=1439086429]
+collision_layer = 8
 script = ExtResource("20_wpjfl")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node/hit_S" unique_id=400444528]
@@ -885,18 +887,21 @@ position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_fs7ks")
 
 [node name="hit_E" type="Area2D" parent="Node" unique_id=149624601]
+collision_layer = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node/hit_E" unique_id=699885370]
 position = Vector2(21.5, -14.75)
 shape = SubResource("RectangleShape2D_igrcy")
 
 [node name="hit_W" type="Area2D" parent="Node" unique_id=678003656]
+collision_layer = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node/hit_W" unique_id=1566030496]
 position = Vector2(-22, -14.5)
 shape = SubResource("RectangleShape2D_l6n3p")
 
 [node name="hit_N" type="Area2D" parent="Node" unique_id=2071490195]
+collision_layer = 8
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node/hit_N" unique_id=175347324]
 position = Vector2(-1.5, -26)
