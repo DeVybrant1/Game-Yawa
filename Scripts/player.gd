@@ -35,6 +35,7 @@ var dash_timer_global: float = 0.0  # delta-based timer
 
 
 func _ready() -> void:
+		# Assign hurtbox owner
 	pass
 
 

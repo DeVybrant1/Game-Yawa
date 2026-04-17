@@ -28,10 +28,10 @@ var last_direction := "S"
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var detection: Area2D = $detection
 
-@onready var hit_s: Area2D = $Node/hit_S
-@onready var hit_e: Area2D = $Node/hit_E
-@onready var hit_w: Area2D = $Node/hit_W
-@onready var hit_n: Area2D = $Node/hit_N
+@onready var hit_s: Area2D = $hit_S
+@onready var hit_e: Area2D = $hit_E
+@onready var hit_w: Area2D = $hit_W
+@onready var hit_n: Area2D = $hit_N
 
 var hitboxes := {}
 

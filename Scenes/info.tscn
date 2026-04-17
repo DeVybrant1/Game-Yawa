@@ -53,3 +53,12 @@ position = Vector2(18, 25)
 scale = Vector2(0.7348487, 0.6818182)
 sprite_frames = SubResource("SpriteFrames_nmlck")
 autoplay = "default"
+
+[node name="Label" type="Label" parent="Control" unique_id=1285002606]
+layout_mode = 0
+offset_left = -35.0
+offset_top = 13.0
+offset_right = 5.0
+offset_bottom = 36.0
+text = "20"
+horizontal_alignment = 2

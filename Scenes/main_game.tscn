@@ -1152,7 +1152,7 @@ tile_map_data = PackedByteArray("AAADAAwAAAACAAwAAAALAAwAAAACAAwAAAATAAwAAAACAAw
 tile_set = SubResource("TileSet_73nn6")
 
 [node name="TileMapLayer3" type="TileMapLayer" parent="Tiles" unique_id=1331195940]
-tile_map_data = PackedByteArray("AAAHAP3/AQAWABAAAAAVAPD/AQAGAAAAAAA=")
+tile_map_data = PackedByteArray("AAAHAP3/AQAWABAAAAA=")
 tile_set = SubResource("TileSet_18r40")
 
 [node name="TileMapLayer4" type="TileMapLayer" parent="Tiles" unique_id=1325925349]
@@ -1166,21 +1166,21 @@ tile_set = SubResource("TileSet_18r40")
 
 [node name="enemies" type="Node" parent="." unique_id=346266752]
 
-[node name="Djinn" type="Node" parent="." unique_id=1980470405]
-
-[node name="mage guardian" parent="Djinn" unique_id=921066911 instance=ExtResource("6_bb2iq")]
-z_index = 2
-position = Vector2(456, -159)
-
-[node name="mutant" parent="Djinn" unique_id=1168828391 node_paths=PackedStringArray("target") instance=ExtResource("7_18r40")]
+[node name="mutant" parent="enemies" unique_id=1168828391 node_paths=PackedStringArray("target") instance=ExtResource("7_18r40")]
 z_index = 2
 position = Vector2(225, -139)
 script = ExtResource("9_r0mdn")
 target = NodePath("../../Player")
 
-[node name="NavigationAgent2D2" type="NavigationAgent2D" parent="Djinn/mutant" unique_id=247454985]
+[node name="NavigationAgent2D2" type="NavigationAgent2D" parent="enemies/mutant" unique_id=247454985]
 avoidance_enabled = true
 radius = 132.68
+
+[node name="Djinn" type="Node" parent="." unique_id=1980470405]
+
+[node name="mage guardian" parent="Djinn" unique_id=921066911 instance=ExtResource("6_bb2iq")]
+z_index = 2
+position = Vector2(456, -159)
 
 [node name="Fade_transition" parent="." unique_id=1839511524 instance=ExtResource("8_6y7pd")]
 z_index = 2
