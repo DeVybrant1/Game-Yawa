@@ -1,14 +1,14 @@
 [gd_scene format=3 uid="uid://dd3ycmokrfbgk"]
 
 [ext_resource type="Script" uid="uid://dwcsfj3wjtyys" path="res://Scripts/main_menu.gd" id="1_8i1on"]
-[ext_resource type="Texture2D" uid="uid://11r23tv1rgtv" path="res://Scenes/menu3.png" id="1_ro7et"]
 [ext_resource type="Texture2D" uid="uid://c500i05cdv10" path="res://Scenes/ui/2cc513924fd144b6b7d49fa369d9b4b4/Buttons.png" id="2_5qyac"]
+[ext_resource type="Texture2D" uid="uid://djig8oprow0l1" path="res://Scenes/level_2_temp.jpg" id="2_8h8w5"]
 [ext_resource type="FontFile" uid="uid://coc2xem08bub7" path="res://Scenes/ui/font/Harmonic.ttf" id="3_sdhxm"]
 [ext_resource type="PackedScene" uid="uid://b4ty2tnewtj3o" path="res://Scenes/ui/Main_menu/fade_transition.tscn" id="5_8h8w5"]
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_qxuwx"]
-texture = ExtResource("1_ro7et")
-modulate_color = Color(0.35906893, 0.35906914, 0.35906902, 1)
+texture = ExtResource("2_8h8w5")
+modulate_color = Color(0.5481649, 0.54816455, 0.54816467, 1)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_sdhxm"]
 load_path = "res://.godot/imported/Buttons.png-877dafe1bf80303b502f5092e0894919.ctex"
