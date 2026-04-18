@@ -1,0 +1,182 @@
+[gd_scene format=3 uid="uid://d0u2aq6qqim2w"]
+
+[ext_resource type="Script" uid="uid://8vufk3gxoauq" path="res://Scripts/level_menu_script.gd" id="1_7u6g3"]
+[ext_resource type="Texture2D" uid="uid://djig8oprow0l1" path="res://Scenes/level_2_temp.jpg" id="1_gq0q1"]
+[ext_resource type="FontFile" uid="uid://coc2xem08bub7" path="res://Scenes/ui/font/Harmonic.ttf" id="2_7u6g3"]
+[ext_resource type="Texture2D" uid="uid://c500i05cdv10" path="res://Scenes/ui/2cc513924fd144b6b7d49fa369d9b4b4/Buttons.png" id="2_8bmec"]
+[ext_resource type="PackedScene" uid="uid://b4ty2tnewtj3o" path="res://Scenes/ui/Main_menu/fade_transition.tscn" id="5_08fm2"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_8bmec"]
+texture = ExtResource("1_gq0q1")
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gq0q1"]
+atlas = ExtResource("2_8bmec")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_08fm2"]
+atlas = ExtResource("2_8bmec")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_j66i4"]
+atlas = ExtResource("2_8bmec")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8bmec"]
+atlas = ExtResource("2_8bmec")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_cn7yq"]
+atlas = ExtResource("2_8bmec")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s05e0"]
+atlas = ExtResource("2_8bmec")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7u6g3"]
+atlas = ExtResource("2_8bmec")
+region = Rect2(112, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_bfb1h"]
+atlas = ExtResource("2_8bmec")
+region = Rect2(128, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wkxd1"]
+atlas = ExtResource("2_8bmec")
+region = Rect2(144, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_llpe6"]
+atlas = ExtResource("2_8bmec")
+region = Rect2(128, 32, 16, 16)
+
+[node name="Level" type="Control" unique_id=64354909]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_7u6g3")
+
+[node name="Panel" type="Panel" parent="." unique_id=51700326]
+modulate = Color(0.54901963, 0.54901963, 0.54901963, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxTexture_8bmec")
+
+[node name="Label" type="Label" parent="." unique_id=2127892059]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -44.0
+offset_top = -81.0
+offset_right = 34.0
+offset_bottom = -37.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.7744414, 0.87541455, 0.8992973, 1)
+theme_override_colors/font_shadow_color = Color(0.003921569, 0.003921569, 0.10980392, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("2_7u6g3")
+theme_override_font_sizes/font_size = 28
+text = "Levels"
+
+[node name="control" type="Control" parent="." unique_id=1091390520]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="control" unique_id=2060441098]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -68.0
+offset_top = -32.0
+offset_right = 68.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 21
+
+[node name="LeftButton" type="TextureButton" parent="control/HBoxContainer" unique_id=2089177483]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+size_flags_horizontal = 0
+texture_normal = SubResource("AtlasTexture_gq0q1")
+texture_pressed = SubResource("AtlasTexture_08fm2")
+texture_hover = SubResource("AtlasTexture_j66i4")
+stretch_mode = 5
+flip_h = true
+
+[node name="Label" type="Label" parent="control/HBoxContainer" unique_id=555802995]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.7299302, 0.86906546, 0.8683228, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_fonts/font = ExtResource("2_7u6g3")
+theme_override_font_sizes/font_size = 48
+text = "1"
+
+[node name="RightButton" type="TextureButton" parent="control/HBoxContainer" unique_id=2003025709]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 2
+texture_normal = SubResource("AtlasTexture_8bmec")
+texture_pressed = SubResource("AtlasTexture_cn7yq")
+texture_hover = SubResource("AtlasTexture_s05e0")
+ignore_texture_size = true
+stretch_mode = 5
+
+[node name="SelectButton" type="TextureButton" parent="." unique_id=1475613918]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -23.0
+offset_top = 46.0
+offset_right = 9.0
+offset_bottom = 78.0
+grow_horizontal = 2
+grow_vertical = 2
+texture_normal = SubResource("AtlasTexture_7u6g3")
+texture_pressed = SubResource("AtlasTexture_bfb1h")
+stretch_mode = 5
+
+[node name="HomeButton" type="TextureButton" parent="." unique_id=1229391687]
+custom_minimum_size = Vector2(32, 32)
+layout_mode = 0
+offset_left = 25.0
+offset_top = 26.0
+offset_right = 65.0
+offset_bottom = 66.0
+texture_normal = SubResource("AtlasTexture_wkxd1")
+texture_pressed = SubResource("AtlasTexture_llpe6")
+stretch_mode = 5
+
+[node name="Fade_transition" parent="." unique_id=1839511524 instance=ExtResource("5_08fm2")]
+visible = false
+layout_mode = 1
+
+[node name="Fade_timer" type="Timer" parent="Fade_transition" unique_id=196156763]
+
+[connection signal="pressed" from="control/HBoxContainer/LeftButton" to="." method="_on_left_button_pressed"]
+[connection signal="pressed" from="control/HBoxContainer/RightButton" to="." method="_on_right_button_pressed"]
+[connection signal="pressed" from="SelectButton" to="." method="_on_select_button_pressed"]
+[connection signal="pressed" from="HomeButton" to="." method="_on_home_button_pressed"]
