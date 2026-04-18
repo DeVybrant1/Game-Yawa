@@ -858,8 +858,7 @@ region = Rect2(79.74213, 98.568954, 48.56189, 15.206245)
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_jsob3"]
 atlas = ExtResource("22_wpjfl")
-region = Rect2(47.797005, 102.91446, 29.250298, 5.295311)
-margin = Rect2(16, 4, 16, 4)
+region = Rect2(47.96416, 102.79101, 29.046543, 5.064842)
 
 [node name="Player" type="CharacterBody2D" unique_id=1439054031]
 collision_layer = 2
@@ -942,6 +941,7 @@ max_value = 5.0
 value = 5.0
 texture_under = SubResource("AtlasTexture_wcnj3")
 texture_progress = SubResource("AtlasTexture_jsob3")
+texture_progress_offset = Vector2(16, 4)
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]
