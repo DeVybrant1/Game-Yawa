@@ -1168,11 +1168,20 @@ tile_set = SubResource("TileSet_18r40")
 
 [node name="mutant" parent="enemies" unique_id=1168828391 node_paths=PackedStringArray("target") instance=ExtResource("7_18r40")]
 z_index = 2
-position = Vector2(225, -139)
+position = Vector2(271, -102)
 script = ExtResource("9_r0mdn")
 target = NodePath("../../Player")
 
 [node name="NavigationAgent2D2" type="NavigationAgent2D" parent="enemies/mutant" unique_id=247454985]
+avoidance_enabled = true
+radius = 132.68
+
+[node name="mutant2" parent="enemies" unique_id=1856739056 node_paths=PackedStringArray("target") instance=ExtResource("7_18r40")]
+position = Vector2(166, -135)
+script = ExtResource("9_r0mdn")
+target = NodePath("../../Player")
+
+[node name="NavigationAgent2D2" type="NavigationAgent2D" parent="enemies/mutant2" unique_id=375194225]
 avoidance_enabled = true
 radius = 132.68
 

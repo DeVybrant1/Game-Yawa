@@ -2030,7 +2030,7 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_2bp5q")
 }],
-"loop": true,
+"loop": false,
 "name": &"attack_E",
 "speed": 15.0
 }, {
@@ -2362,9 +2362,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_xanul")
 }],
-"loop": true,
+"loop": false,
 "name": &"dying_E",
-"speed": 10.0
+"speed": 30.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -2559,9 +2559,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_bbvsq")
 }],
-"loop": true,
+"loop": false,
 "name": &"dying_N",
-"speed": 20.0
+"speed": 30.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -2651,9 +2651,9 @@ animations = [{
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_qxbnv")
 }],
-"loop": true,
+"loop": false,
 "name": &"dying_S",
-"speed": 16.0
+"speed": 30.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -2745,7 +2745,7 @@ animations = [{
 }],
 "loop": false,
 "name": &"dying_W",
-"speed": 17.0
+"speed": 30.0
 }, {
 "frames": [{
 "duration": 1.0,
@@ -3505,23 +3505,31 @@ size = Vector2(42, 27)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_0u6jp"]
 size = Vector2(59, 36)
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ekewc"]
+bg_color = Color(0, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ulekr"]
+bg_color = Color(0.18691492, 0.48097003, 1.92523e-07, 1)
+
 [node name="mutant" type="CharacterBody2D" unique_id=1168828391]
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=1052109056]
 position = Vector2(-6, -4)
 scale = Vector2(0.4, 0.4)
 sprite_frames = SubResource("SpriteFrames_6ljyp")
-animation = &"dying_S"
-frame_progress = 0.11340971
+animation = &"dying_W"
+frame = 28
+frame_progress = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=331525110]
 position = Vector2(-2, -4)
 shape = SubResource("CircleShape2D_px4bq")
 
-[node name="hurtbox" type="Area2D" parent="." unique_id=573171356]
+[node name="hurtbox" type="Area2D" parent="." unique_id=573171356 node_paths=PackedStringArray("health")]
 collision_layer = 8
 collision_mask = 4
 script = ExtResource("13_0u6jp")
+health = NodePath("../health")
 
 [node name="CollisionShape2D2" type="CollisionShape2D" parent="hurtbox" unique_id=1489065331]
 position = Vector2(-0.5, -16)
@@ -3540,8 +3548,8 @@ shape = SubResource("CircleShape2D_3iiui")
 script = ExtResource("13_m32na")
 
 [node name="hit_S" type="Area2D" parent="." unique_id=1933629475]
-collision_layer = 8
-collision_mask = 4
+collision_layer = 4
+collision_mask = 8
 script = ExtResource("14_livox")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hit_S" unique_id=1225230256]
@@ -3549,8 +3557,8 @@ position = Vector2(-1.5, -3)
 shape = SubResource("RectangleShape2D_d5dam")
 
 [node name="hit_E" type="Area2D" parent="." unique_id=217525037]
-collision_layer = 8
-collision_mask = 4
+collision_layer = 4
+collision_mask = 8
 script = ExtResource("14_livox")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hit_E" unique_id=1815534856]
@@ -3558,8 +3566,8 @@ position = Vector2(21.5, -14.75)
 shape = SubResource("RectangleShape2D_m32na")
 
 [node name="hit_W" type="Area2D" parent="." unique_id=1543576320]
-collision_layer = 8
-collision_mask = 4
+collision_layer = 4
+collision_mask = 8
 script = ExtResource("14_livox")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hit_W" unique_id=252922103]
@@ -3567,10 +3575,21 @@ position = Vector2(-22, -14.5)
 shape = SubResource("RectangleShape2D_h44lh")
 
 [node name="hit_N" type="Area2D" parent="." unique_id=871644310]
-collision_layer = 8
-collision_mask = 4
+collision_layer = 4
+collision_mask = 8
 script = ExtResource("14_livox")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hit_N" unique_id=174968959]
 position = Vector2(-1.5, -26)
 shape = SubResource("RectangleShape2D_0u6jp")
+
+[node name="Healthbar" type="ProgressBar" parent="." unique_id=1791061352]
+offset_left = -13.0
+offset_top = -40.0
+offset_right = 3.0
+offset_bottom = -36.0
+theme_override_styles/background = SubResource("StyleBoxFlat_ekewc")
+theme_override_styles/fill = SubResource("StyleBoxFlat_ulekr")
+max_value = 5.0
+value = 5.0
+show_percentage = false

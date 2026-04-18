@@ -3,24 +3,25 @@ extends CharacterBody2D
 
 # --- Movement ---
 var move_speed: float = 100.0
-var attack_speed_multiplier: float = 0.4  # slower movement while attacking
+var attack_speed_multiplier: float = 0.4
 var dash_speed: float = 400.0
 var dash_duration: float = 0.15
-var dash_cooldown_time: float = 0.3 # double-tap max interval to trigger dash
-var dash_global_cooldown: float = 0.3  # cooldown after dash ends
+var dash_cooldown_time: float = 0.3
+var dash_global_cooldown: float = 0.3
 
 var direction: Vector2 = Vector2.ZERO
 var lastdir: String = "d"
 
 # --- Attack ---
 var attacking: bool = false
-var attacknum: int = 1  # toggle between 1 and 2
+var attacknum: int = 1
+var attack_dir: String = "d"
 
 # --- Dash ---
 var dashing: bool = false
 var dash_dir: Vector2 = Vector2.ZERO
 var dash_timer: float = 0.0
-var dash_ready: bool = true  # prevents dashing during cooldown
+var dash_ready: bool = true
 
 var last_press_time = {
 	"up": 0.0,
@@ -28,22 +29,39 @@ var last_press_time = {
 	"left": 0.0,
 	"right": 0.0
 }
-var dash_timer_global: float = 0.0  # delta-based timer
+var dash_timer_global: float = 0.0
 
 # --- Nodes ---
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var health: Health = $health
+@onready var health_bar: TextureProgressBar = $CanvasLayer/Healthbar_main
+
 
 
 func _ready() -> void:
-		# Assign hurtbox owner
-	pass
+	health.died.connect(_on_died)
+	health.health_changed.connect(_on_health_changed)
+	health_bar.max_value = health.max_health
+	health_bar.value = health.max_health
 
+	# Create the flash shader material
+	var shader = Shader.new()
+	shader.code = "
+		shader_type canvas_item;
+		uniform float flash_amount : hint_range(0.0, 1.0) = 0.0;
+		void fragment() {
+			vec4 col = texture(TEXTURE, UV);
+			col.rgb = mix(col.rgb, vec3(1.0), flash_amount * col.a);
+			COLOR = col;
+		}
+	"
+	var mat = ShaderMaterial.new()
+	mat.shader = shader
+	animated_sprite_2d.material = mat
 
 func _process(_delta: float) -> void:
-	# Increment global timer
 	dash_timer_global += _delta
 
-	# Skip normal input during dash
 	if dashing:
 		return
 
@@ -63,7 +81,8 @@ func _process(_delta: float) -> void:
 	# --- Attack input ---
 	if Input.is_action_just_pressed("attack_1") and not attacking:
 		attacking = true
-		animated_sprite_2d.play("attack" + str(attacknum) + "_" + lastdir)
+		attack_dir = lastdir
+		animated_sprite_2d.play("attack" + str(attacknum) + "_" + attack_dir)
 		attacknum = 2 if attacknum == 1 else 1
 
 	# --- Animation ---
@@ -79,14 +98,12 @@ func _process(_delta: float) -> void:
 
 
 func _physics_process(_delta: float) -> void:
-	# --- Dash logic ---
 	if dashing:
 		velocity = dash_dir * dash_speed
 		dash_timer -= _delta
 		if dash_timer <= 0:
 			dashing = false
-			dash_ready = false  # start cooldown after dash ends
-			# Use await instead of yield
+			dash_ready = false
 			await get_tree().create_timer(dash_global_cooldown).timeout
 			dash_ready = true
 	elif attacking:
@@ -97,14 +114,13 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 
-# --- Dash helper ---
+# --- Dash helpers ---
 func _check_dash(key_name: String, vec: Vector2) -> void:
 	if Input.is_action_just_pressed(key_name):
 		var time_now = dash_timer_global
 		if time_now - last_press_time[key_name] <= dash_cooldown_time:
 			_start_dash(vec)
 		last_press_time[key_name] = time_now
-
 
 func _start_dash(vec: Vector2) -> void:
 	dashing = true
@@ -113,7 +129,32 @@ func _start_dash(vec: Vector2) -> void:
 	animated_sprite_2d.play("run_" + lastdir)
 
 
-# --- Animation finished callback ---
+# --- Animation finished ---
 func _on_animated_sprite_2d_animation_finished() -> void:
 	if animated_sprite_2d.animation.begins_with("attack"):
 		attacking = false
+
+
+
+
+func _on_died() -> void:
+	set_physics_process(false)
+	set_process(false)
+
+	var tween = create_tween()
+	tween.tween_method(_set_white_flash, 0.0, 1.0, 0.1)
+	tween.tween_method(_set_white_flash, 1.0, 0.0, 0.1)
+	tween.tween_method(_set_white_flash, 0.0, 1.0, 0.1)
+	tween.tween_method(_set_white_flash, 1.0, 0.0, 0.1)
+	tween.tween_method(_set_white_flash, 0.0, 1.0, 0.1)
+	await tween.finished
+
+	get_tree().reload_current_scene()
+
+
+func _set_white_flash(amount: float) -> void:
+	animated_sprite_2d.material.set_shader_parameter("flash_amount", amount)
+func _on_health_changed(new_health: int, max_health: int) -> void:
+	# TODO: update health bar UI
+	health_bar.value = new_health
+	print("Player HP: %d / %d" % [new_health, max_health])

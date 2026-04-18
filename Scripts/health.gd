@@ -11,6 +11,7 @@ func _ready() -> void:
 	health = max_health
 
 func take_damage(amount: int) -> void:
+	print("take_damage called, amount: ", amount, " current health: ", health)
 	health = clampi(health - amount, 0, max_health)
 	health_changed.emit(health, max_health)
 	if health == 0:

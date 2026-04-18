@@ -11,12 +11,6 @@ var player_in_range := false
 var attacking := false
 
 # ---------------------------------------------------
-# HEALTH
-# ---------------------------------------------------
-var max_health: int = 5
-var health: int = 5
-
-# ---------------------------------------------------
 # DIRECTION
 # ---------------------------------------------------
 var last_direction := "S"
@@ -27,11 +21,13 @@ var last_direction := "S"
 @onready var navigation_agent: NavigationAgent2D = $NavigationAgent2D2
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var detection: Area2D = $detection
+@onready var health: Health = $health
 
 @onready var hit_s: Area2D = $hit_S
 @onready var hit_e: Area2D = $hit_E
 @onready var hit_w: Area2D = $hit_W
 @onready var hit_n: Area2D = $hit_N
+@onready var healthbar: ProgressBar = $Healthbar
 
 var hitboxes := {}
 
@@ -48,16 +44,18 @@ func _ready() -> void:
 
 	_disable_all_hitboxes()
 
-	# detection
 	detection.body_entered.connect(_on_detection_body_entered)
 	detection.body_exited.connect(_on_detection_body_exited)
 
-	# connect hitboxes (enemy deals damage)
 	for box in hitboxes.values():
 		box.area_entered.connect(_on_hitbox_area_entered)
 
-	call_deferred("seeker_setup")
+	health.died.connect(_on_died)
+	health.health_changed.connect(_on_health_changed)
 
+	call_deferred("seeker_setup")
+	healthbar.max_value = health.max_health
+	healthbar.value = health.max_health
 # ---------------------------------------------------
 # INIT NAV
 # ---------------------------------------------------
@@ -81,20 +79,13 @@ func _physics_process(_delta: float) -> void:
 
 	var distance_to_target = global_position.distance_to(target.global_position)
 
-	# ---------------------------------------------------
-	# ATTACK
-	# ---------------------------------------------------
 	if distance_to_target <= stop_distance:
 		velocity = Vector2.ZERO
 		move_and_slide()
-
 		if not attacking:
 			attack()
 		return
 
-	# ---------------------------------------------------
-	# MOVE
-	# ---------------------------------------------------
 	if navigation_agent.is_navigation_finished():
 		velocity = Vector2.ZERO
 		move_and_slide()
@@ -116,28 +107,23 @@ func _physics_process(_delta: float) -> void:
 func attack():
 	attacking = true
 	play_animation("attack")
-
 	_update_hitboxes()
-
 	await get_tree().create_timer(0.4).timeout
-
 	_disable_all_hitboxes()
 	attacking = false
 
 # ---------------------------------------------------
-# HITBOX SYSTEM (ENEMY DEALS DAMAGE)
+# HITBOX SYSTEM
 # ---------------------------------------------------
 func _update_hitboxes() -> void:
 	_disable_all_hitboxes()
-
 	var active = hitboxes.get(last_direction, null)
 	if active:
 		active.monitoring = true
 
-
 func _disable_all_hitboxes() -> void:
 	for box in hitboxes.values():
-		box.monitoring = false
+		box.set_deferred("monitoring", false)
 
 # ---------------------------------------------------
 # DIRECTION
@@ -168,15 +154,19 @@ func _on_detection_body_exited(body):
 		player_in_range = false
 
 # ---------------------------------------------------
-# DAMAGE RECEIVED (PLAYER HITS ENEMY)
+# HEALTH CALLBACKS
 # ---------------------------------------------------
-func take_damage(amount: int) -> void:
-	health -= amount
-	print("Enemy Health:", health)
-
-	if health <= 0:
-		print("Enemy died!")
-		queue_free()
+func _on_health_changed(new_health: int, max_health: int) -> void:
+	print("Enemy HP: %d / %d" % [new_health, max_health])
+	healthbar.value = new_health
+	
+func _on_died() -> void:
+	set_physics_process(false)
+	_disable_all_hitboxes()
+	$hurtbox/CollisionShape2D2.set_deferred("disabled", true)
+	animated_sprite_2d.play("dying_" + last_direction)
+	await animated_sprite_2d.animation_finished
+	queue_free()
 
 # ---------------------------------------------------
 # HITBOX CONTACT (ENEMY DAMAGES PLAYER)

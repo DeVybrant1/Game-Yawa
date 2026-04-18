@@ -21,6 +21,7 @@
 [ext_resource type="Script" uid="uid://ep5vjf4003tv" path="res://Scripts/hurtbox.gd" id="18_olqyp"]
 [ext_resource type="Script" uid="uid://b2vycyaepnfqh" path="res://Scripts/health.gd" id="19_fs7ks"]
 [ext_resource type="Script" uid="uid://dfsdbd5bba62h" path="res://Scripts/hitbox.gd" id="20_wpjfl"]
+[ext_resource type="Texture2D" uid="uid://bx58op54rdtbg" path="res://Scenes/ui/2cc513924fd144b6b7d49fa369d9b4b4/Bars.png" id="22_wpjfl"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3uvy8"]
 atlas = ExtResource("2_ukyrk")
@@ -851,6 +852,15 @@ size = Vector2(59, 36)
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_igrcy"]
 size = Vector2(39, 26.5)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_wcnj3"]
+atlas = ExtResource("22_wpjfl")
+region = Rect2(79.74213, 98.568954, 48.56189, 15.206245)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_jsob3"]
+atlas = ExtResource("22_wpjfl")
+region = Rect2(47.797005, 102.91446, 29.250298, 5.295311)
+margin = Rect2(16, 4, 16, 4)
+
 [node name="Player" type="CharacterBody2D" unique_id=1439054031]
 collision_layer = 2
 script = ExtResource("1_f1ek2")
@@ -864,10 +874,11 @@ animation = &"attack2_u"
 position = Vector2(0, -6)
 shape = SubResource("CircleShape2D_qqcod")
 
-[node name="hurtbox" type="Area2D" parent="." unique_id=691738041]
+[node name="hurtbox" type="Area2D" parent="." unique_id=691738041 node_paths=PackedStringArray("health")]
 collision_layer = 8
 collision_mask = 4
 script = ExtResource("18_olqyp")
+health = NodePath("../health")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox" unique_id=1895805501]
 position = Vector2(0, -14)
@@ -892,7 +903,7 @@ position = Vector2(-1.5, -26)
 shape = SubResource("RectangleShape2D_olqyp")
 
 [node name="hit_W" type="Area2D" parent="." unique_id=678003656]
-collision_layer = 68
+collision_layer = 4
 collision_mask = 8
 script = ExtResource("20_wpjfl")
 
@@ -917,6 +928,20 @@ script = ExtResource("20_wpjfl")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="hit_E" unique_id=699885370]
 position = Vector2(21.5, -14.75)
 shape = SubResource("RectangleShape2D_igrcy")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1198378382]
+
+[node name="Healthbar_main" type="TextureProgressBar" parent="CanvasLayer" unique_id=1440607999]
+custom_minimum_size = Vector2(39, 0)
+offset_left = 5.0
+offset_top = 3.0
+offset_right = 55.0
+offset_bottom = 44.0
+scale = Vector2(2, 2)
+max_value = 5.0
+value = 5.0
+texture_under = SubResource("AtlasTexture_wcnj3")
+texture_progress = SubResource("AtlasTexture_jsob3")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]
