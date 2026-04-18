@@ -21,8 +21,8 @@ buses/default_bus_layout="uid://be8ut8s2pl888"
 
 [autoload]
 
-MusicPlayer="*uid://ied0hl2ecwwj"
 SceneChanger="*uid://b4ty2tnewtj3o"
+MusicPlayer="*uid://c7iud2h3oxi08"
 
 [display]
 

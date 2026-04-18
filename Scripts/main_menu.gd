@@ -8,7 +8,7 @@ var button_type = null;
 func _ready() -> void:
 	MusicPlayer.play_music(preload("res://Audio/Amani_music.mp3"))
 	$Fade_transition.show()
-	$Fade_transition/AnimationPlayer.play("fade_out") 
+	$Fade_transition/AnimationPlayer.play("fade_out")
 	await $Fade_transition/AnimationPlayer.animation_finished
 	$Fade_transition.hide()
 	
