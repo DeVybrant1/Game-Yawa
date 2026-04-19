@@ -4,8 +4,10 @@ extends Control
 var button_type = null;
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$Fade_transition/AnimationPlayer.play("fade_out") 
-	pass # Replace with function body.
+	$Fade_transition.show()
+	$Fade_transition/AnimationPlayer.play("fade_out")
+	await $Fade_transition/AnimationPlayer.animation_finished
+	$Fade_transition.hide()
 	
 func _on_home_button_pressed() -> void:
 	button_type = "home";

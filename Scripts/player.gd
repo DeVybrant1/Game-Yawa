@@ -44,6 +44,8 @@ func _ready() -> void:
 	health_bar.max_value = health.max_health
 	health_bar.value = health.max_health
 
+	animated_sprite_2d.animation_changed.connect(_on_animated_sprite_2d_animation_changed)
+
 	# Create the flash shader material
 	var shader = Shader.new()
 	shader.code = "
@@ -134,7 +136,10 @@ func _on_animated_sprite_2d_animation_finished() -> void:
 	if animated_sprite_2d.animation.begins_with("attack"):
 		attacking = false
 
-
+# --- Animation changed (catches interrupted attacks) ---
+func _on_animated_sprite_2d_animation_changed() -> void:
+	if attacking and not animated_sprite_2d.animation.begins_with("attack"):
+		attacking = false
 
 
 func _on_died() -> void:
@@ -154,7 +159,7 @@ func _on_died() -> void:
 
 func _set_white_flash(amount: float) -> void:
 	animated_sprite_2d.material.set_shader_parameter("flash_amount", amount)
+
 func _on_health_changed(new_health: int, max_health: int) -> void:
-	# TODO: update health bar UI
 	health_bar.value = new_health
 	print("Player HP: %d / %d" % [new_health, max_health])

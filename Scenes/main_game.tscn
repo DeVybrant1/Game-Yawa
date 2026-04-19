@@ -1196,7 +1196,7 @@ z_index = 2
 
 [node name="Chest" parent="." unique_id=83112387 instance=ExtResource("7_0xqxu")]
 z_index = 1
-position = Vector2(138, 140)
+position = Vector2(168, 120)
 script = ExtResource("12_tpqse")
 
 [node name="info" parent="." unique_id=1633229787 instance=ExtResource("13_c78sm")]
