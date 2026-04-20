@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://bx58op54rdtbg" path="res://Scenes/ui/2cc513924fd144b6b7d49fa369d9b4b4/Bars.png" id="3_66qdu"]
 [ext_resource type="Script" uid="uid://ep5vjf4003tv" path="res://Scripts/hurtbox.gd" id="3_cqr0b"]
 [ext_resource type="Script" uid="uid://b2vycyaepnfqh" path="res://Scripts/health.gd" id="5_c5vxn"]
+[ext_resource type="FontFile" uid="uid://ch7s3kag72ej3" path="res://Fonts/PixelOperator8-Bold.ttf" id="7_cvoby"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0d4v1"]
 atlas = ExtResource("1_dpc5n")
@@ -282,6 +283,16 @@ theme_override_styles/fill = SubResource("StyleBoxTexture_guyru")
 max_value = 20.0
 value = 20.0
 show_percentage = false
+
+[node name="Label" type="Label" parent="CanvasLayer/healthbar" unique_id=1057225435]
+layout_mode = 0
+offset_left = 131.0
+offset_top = 4.0
+offset_right = 346.0
+offset_bottom = 28.0
+theme_override_fonts/font = ExtResource("7_cvoby")
+theme_override_font_sizes/font_size = 13
+text = "DJINN OF IGNORANCE"
 
 [node name="health" type="Node" parent="." unique_id=1717651533]
 script = ExtResource("5_c5vxn")
