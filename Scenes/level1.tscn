@@ -1662,6 +1662,18 @@ metadata/_edit_use_anchors_ = true
 z_index = 1
 position = Vector2(176, -795)
 
+[node name="Chest2" parent="." unique_id=914344601 instance=ExtResource("11_tlxhh")]
+z_index = 2
+position = Vector2(-45, 167)
+
 [node name="Chest" parent="." unique_id=981946868 instance=ExtResource("11_tlxhh")]
 z_index = 2
-position = Vector2(774, 958)
+position = Vector2(810, 93)
+
+[node name="Chest3" parent="." unique_id=1006066 instance=ExtResource("11_tlxhh")]
+z_index = 2
+position = Vector2(173, -555)
+
+[node name="Chest4" parent="." unique_id=1892891701 instance=ExtResource("11_tlxhh")]
+z_index = 2
+position = Vector2(256, -553)

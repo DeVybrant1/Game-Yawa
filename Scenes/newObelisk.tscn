@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://de7exbob8imcd"]
 
 [ext_resource type="Texture2D" uid="uid://ddc3csiil28qh" path="res://sprites/downloaded/FlyingObelisk_Simple/FlyingObelisk_no_lightnings_no_letter.png" id="1_8wqvm"]
+[ext_resource type="Script" uid="uid://qt4a2cp7al7" path="res://Scripts/new_obelisk.gd" id="1_pruua"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_8uwsg"]
 radius = 42.0
@@ -165,6 +166,7 @@ _data = {
 }
 
 [node name="newObelisk" type="Node2D" unique_id=83112387]
+script = ExtResource("1_pruua")
 
 [node name="Label" type="Label" parent="." unique_id=1879214003]
 offset_left = -5.0
