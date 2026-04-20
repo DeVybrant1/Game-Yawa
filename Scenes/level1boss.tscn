@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://b4ty2tnewtj3o" path="res://Scenes/ui/Main_menu/fade_transition.tscn" id="10_y2gc2"]
 [ext_resource type="PackedScene" uid="uid://bds1ca5jsyd48" path="res://cutscene/Introcutscene.tscn" id="11_hb8jy"]
 [ext_resource type="PackedScene" uid="uid://dqahtiad2xby1" path="res://Scenes/info.tscn" id="11_sg2bn"]
-[ext_resource type="PackedScene" uid="uid://bkrqatheqbn7g" path="res://chest.tscn" id="12_luw0l"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_73nn6"]
 vertices = PackedVector2Array(8, 8, -8, 8, -8, -8, 8, -8)
@@ -1129,7 +1128,7 @@ script = ExtResource("1_kdf4n")
 
 [node name="Player" parent="." unique_id=1439054031 instance=ExtResource("2_br6bn")]
 z_index = 2
-position = Vector2(62, 28)
+position = Vector2(92, 12)
 
 [node name="Camera2D" type="Camera2D" parent="Player" unique_id=38383602]
 position = Vector2(5, -4)
@@ -1150,16 +1149,13 @@ tile_map_data = PackedByteArray("AAADAAwAAAACAAwAAAALAAwAAAACAAwAAAATAAwAAAACAAw
 tile_set = SubResource("TileSet_73nn6")
 
 [node name="TileMapLayer3" type="TileMapLayer" parent="Tiles" unique_id=1331195940]
-tile_map_data = PackedByteArray("AAAHAP3/AQAWABAAAAA=")
 tile_set = SubResource("TileSet_18r40")
 
 [node name="TileMapLayer4" type="TileMapLayer" parent="Tiles" unique_id=1325925349]
-tile_map_data = PackedByteArray("AAAHAPz/AQAOAAAAAAA=")
 tile_set = SubResource("TileSet_18r40")
 
 [node name="TileMapLayer5" type="TileMapLayer" parent="Tiles" unique_id=110824916]
 position = Vector2(-1, -2)
-tile_map_data = PackedByteArray("AAAHAPz/AQAQAAAAAAA=")
 tile_set = SubResource("TileSet_18r40")
 
 [node name="enemies" type="Node" parent="." unique_id=346266752]
@@ -1168,7 +1164,9 @@ tile_set = SubResource("TileSet_18r40")
 
 [node name="mage guardian" parent="Djinn" unique_id=921066911 instance=ExtResource("9_c4qi2")]
 z_index = 2
-position = Vector2(50, -93)
+position = Vector2(84, -93)
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Djinn/mage guardian" unique_id=1249417742]
 
 [node name="Fade_transition" parent="." unique_id=1839511524 instance=ExtResource("10_y2gc2")]
 z_index = 2

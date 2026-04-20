@@ -1,8 +1,12 @@
 [gd_scene format=3 uid="uid://dkalxe8appf30"]
 
+[ext_resource type="Script" uid="uid://dlpxjv11ry7hf" path="res://Scripts/djinn.gd" id="1_c5vxn"]
 [ext_resource type="Texture2D" uid="uid://22gu2aaayvx7" path="res://sprites/downloaded/mage_guardian_free_creativekind/mage_guardian-blue.png" id="1_dpc5n"]
 [ext_resource type="Texture2D" uid="uid://bdauvj2upfrcx" path="res://sprites/downloaded/mage_guardian_free_creativekind/mage_guardian-red.png" id="2_66qdu"]
+[ext_resource type="PackedScene" uid="uid://d1p54f57u4ahm" path="res://Scenes/fireball.tscn" id="2_q1hlj"]
 [ext_resource type="Texture2D" uid="uid://bx58op54rdtbg" path="res://Scenes/ui/2cc513924fd144b6b7d49fa369d9b4b4/Bars.png" id="3_66qdu"]
+[ext_resource type="Script" uid="uid://ep5vjf4003tv" path="res://Scripts/hurtbox.gd" id="3_cqr0b"]
+[ext_resource type="Script" uid="uid://b2vycyaepnfqh" path="res://Scripts/health.gd" id="5_c5vxn"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_0d4v1"]
 atlas = ExtResource("1_dpc5n")
@@ -219,12 +223,9 @@ radius = 14.035668
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_dpc5n"]
 size = Vector2(29, 54)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_66qdu"]
-atlas = ExtResource("3_66qdu")
-region = Rect2(81.19957, 131.45522, 44.801193, 11.282059)
-
 [sub_resource type="AtlasTexture" id="AtlasTexture_1eug2"]
-atlas = SubResource("AtlasTexture_66qdu")
+atlas = ExtResource("3_66qdu")
+region = Rect2(64.86051, 38.343678, 46.556984, 8.005272)
 
 [sub_resource type="StyleBoxTexture" id="StyleBoxTexture_jt87p"]
 texture = SubResource("AtlasTexture_1eug2")
@@ -237,6 +238,11 @@ region = Rect2(48.06655, 87.67416, 28.985542, 5.499817)
 texture = SubResource("AtlasTexture_kqci0")
 
 [node name="mage guardian" type="CharacterBody2D" unique_id=921066911]
+collision_layer = 3
+collision_mask = 3
+script = ExtResource("1_c5vxn")
+fireball_scene = ExtResource("2_q1hlj")
+shoot_interval = 1.0
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=766858120]
 position = Vector2(0, -28)
@@ -248,15 +254,18 @@ autoplay = "first"
 position = Vector2(0, -12)
 shape = SubResource("CircleShape2D_dpc5n")
 
-[node name="Area2D" type="Area2D" parent="." unique_id=331688598]
+[node name="hurtbox" type="Area2D" parent="." unique_id=331688598]
+collision_layer = 8
+collision_mask = 4
+script = ExtResource("3_cqr0b")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=428078162]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="hurtbox" unique_id=428078162]
 position = Vector2(0.5, -31)
 shape = SubResource("RectangleShape2D_dpc5n")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=183864274]
 
-[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer" unique_id=1037986104]
+[node name="healthbar" type="ProgressBar" parent="CanvasLayer" unique_id=1037986104]
 anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
@@ -274,3 +283,8 @@ theme_override_styles/fill = SubResource("StyleBoxTexture_guyru")
 max_value = 20.0
 value = 20.0
 show_percentage = false
+
+[node name="health" type="Node" parent="." unique_id=1717651533]
+script = ExtResource("5_c5vxn")
+max_health = 20
+metadata/_custom_type_script = "uid://b2vycyaepnfqh"
