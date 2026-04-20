@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bds1ca5jsyd48"]
 
-[ext_resource type="VideoStream" uid="uid://b52ten3kn7df4" path="res://cutscene/amaniOutput.ogv" id="1_yy7ma"]
+[ext_resource type="VideoStream" uid="uid://diu32g3p5b322" path="res://cutscene/amaniOutput.ogv" id="1_yy7ma"]
 [ext_resource type="Script" uid="uid://bdlb161cjyx3s" path="res://cutscene/introcutscene.gd" id="2_kwcf2"]
 
 [node name="Introcutscene" type="Node2D" unique_id=1611055393]

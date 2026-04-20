@@ -31,11 +31,16 @@ var last_press_time = {
 }
 var dash_timer_global: float = 0.0
 
+# --- Baraka ---
+var baraka: int = 0
+
 # --- Nodes ---
 @onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
 @onready var health: Health = $health
 @onready var health_bar: TextureProgressBar = $CanvasLayer/Healthbar_main
+@onready var canvas_layer: CanvasLayer = $CanvasLayer
 
+var baraka_label: Label = null
 
 
 func _ready() -> void:
@@ -60,8 +65,19 @@ func _ready() -> void:
 	var mat = ShaderMaterial.new()
 	mat.shader = shader
 	animated_sprite_2d.material = mat
-	
 
+	# Create baraka label (top-right of screen)
+	baraka_label = Label.new()
+	baraka_label.text = "0"
+	baraka_label.add_theme_font_size_override("font_size", 20)
+	baraka_label.set_anchors_preset(Control.PRESET_TOP_RIGHT)
+	baraka_label.position = Vector2(-160, 10)
+	baraka_label.size = Vector2(150, 40)
+	baraka_label.horizontal_alignment = HORIZONTAL_ALIGNMENT_RIGHT
+	canvas_layer.add_child(baraka_label)
+
+	# Add to player group for global lookup
+	add_to_group("player")
 
 func _process(_delta: float) -> void:
 	dash_timer_global += _delta
@@ -118,6 +134,13 @@ func _physics_process(_delta: float) -> void:
 	move_and_slide()
 
 
+# --- Baraka ---
+func add_baraka(amount: int) -> void:
+	baraka += amount
+	if baraka_label:
+		baraka_label.text = "%d" % baraka
+
+
 # --- Dash helpers ---
 func _check_dash(key_name: String, vec: Vector2) -> void:
 	if Input.is_action_just_pressed(key_name):
@@ -131,6 +154,13 @@ func _start_dash(vec: Vector2) -> void:
 	dash_dir = vec
 	dash_timer = dash_duration
 	animated_sprite_2d.play("run_" + lastdir)
+
+
+# --- Impact frame freeze (call this when a hit lands on an enemy) ---
+func trigger_impact_freeze(duration: float = 0.06) -> void:
+	get_tree().paused = true
+	await get_tree().create_timer(duration, true).timeout
+	get_tree().paused = false
 
 
 # --- Animation finished ---
@@ -166,34 +196,6 @@ func _on_health_changed(new_health: int, max_health: int) -> void:
 	health_bar.value = new_health
 	print("Player HP: %d / %d" % [new_health, max_health])
 
-@onready var pause_menu = $CanvasLayer/PauseMenu 
-func _input(event: InputEvent) -> void:
-	# Using Input.is_action_just_pressed is good here
-	if Input.is_action_just_pressed("pause"):
-		toggle_pause()
-
-func toggle_pause():
-	# Flip the current state of the tree
-	var new_pause_state = !get_tree().paused
-	get_tree().paused = new_pause_state
-	
-	# Instead of just toggle, we ensure visibility matches the tree state
-	pause_menu.visible = new_pause_state
-	
-	if new_pause_state:
-		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	else:
-		# Using HIDDEN is fine, but if you want to lock the mouse 
-		# to the screen, use MOUSE_MODE_CAPTURED
-		Input.mouse_mode = Input.MOUSE_MODE_HIDDEN
-
-func _on_resume_pressed() -> void:
-	# Instead of repeating code, just call your toggle function!
-	# This ensures the Mouse Mode and Menu Visibility are handled 
-	# exactly the same way as the keyboard shortcut.
-	toggle_pause()
-
-func _on_exit_pressed() -> void:
-	# Always unpause before changing scenes so the next scene isn't frozen
-	get_tree().paused = false 
-	get_tree().change_scene_to_file("res://Scenes/ui/Main_menu/Main_menu.tscn")
+func _on_hurtbox_area_entered(area: Area2D) -> void:
+	# This is handled by hurtbox.gd, but kept for compatibility
+	pass

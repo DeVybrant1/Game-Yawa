@@ -6,50 +6,36 @@ extends Node2D
 
 var player_inside := false
 var is_open := false
-var player: Player = null   # store player reference
-
+var player_ref: Node2D = null
 
 func _ready() -> void:
 	area_2d.body_entered.connect(_on_body_entered)
 	area_2d.body_exited.connect(_on_body_exited)
-	print("Chest ready")
-
+	print("Chest script ready - Area2D connected")
 
 func _process(_delta: float) -> void:
 	if player_inside and not is_open and Input.is_action_just_pressed("interact"):
-		
-		if player == null:
-			return
-		
-		var health: Health = player.health
-		
-		# ✅ ONLY open if player is NOT at full health
-		if health.health < health.max_health:
-			health.heal(1)
-			
-			is_open = true
-			animation_player.stop()
-			animated_sprite_2d.play("open")
-			
-			print("Opened! +1 HP")
-		else:
-			print("HP full → chest does nothing")
+		is_open = true
+		animation_player.stop()
+		animated_sprite_2d.play("open")
+		print("Chest opened!")
 
+		# Heal the player by 1
+		if player_ref and player_ref.has_node("health"):
+			var h = player_ref.get_node("health")
+			h.heal(1)
+			print("Player healed +1 from chest")
 
 func _on_body_entered(body: Node2D) -> void:
-	if body is Player:
+	print("Body entered chest: ", body.name)
+	if body.name == "Player":
 		player_inside = true
-		player = body   # ✅ store the player
-		
+		player_ref = body
 		if not is_open:
 			animation_player.play("hover")
-			print("Hover playing")
-
 
 func _on_body_exited(body: Node2D) -> void:
-	if body is Player:
+	if body.name == "Player":
 		player_inside = false
-		player = null
-		
 		if not is_open:
 			animation_player.stop()

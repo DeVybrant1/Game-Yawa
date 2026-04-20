@@ -22,7 +22,7 @@
 [ext_resource type="Script" uid="uid://b2vycyaepnfqh" path="res://Scripts/health.gd" id="19_fs7ks"]
 [ext_resource type="Script" uid="uid://dfsdbd5bba62h" path="res://Scripts/hitbox.gd" id="20_wpjfl"]
 [ext_resource type="Texture2D" uid="uid://bx58op54rdtbg" path="res://Scenes/ui/2cc513924fd144b6b7d49fa369d9b4b4/Bars.png" id="22_wpjfl"]
-[ext_resource type="Script" uid="uid://jtnymxdshtmh" path="res://Scripts/barak.gd" id="23_bi64h"]
+[ext_resource type="Texture2D" uid="uid://c500i05cdv10" path="res://Scenes/ui/2cc513924fd144b6b7d49fa369d9b4b4/Buttons.png" id="23_bi64h"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_3uvy8"]
 atlas = ExtResource("2_ukyrk")
@@ -918,7 +918,6 @@ texture = ExtResource("18_igrcy")
 script = ExtResource("19_fs7ks")
 
 [node name="hit_N" type="Area2D" parent="." unique_id=2071490195]
-visible = false
 collision_layer = 4
 collision_mask = 8
 script = ExtResource("20_wpjfl")
@@ -928,7 +927,6 @@ position = Vector2(-1.5, -26)
 shape = SubResource("RectangleShape2D_olqyp")
 
 [node name="hit_W" type="Area2D" parent="." unique_id=678003656]
-visible = false
 collision_layer = 4
 collision_mask = 8
 script = ExtResource("20_wpjfl")
@@ -938,7 +936,6 @@ position = Vector2(-22, -14.5)
 shape = SubResource("RectangleShape2D_l6n3p")
 
 [node name="hit_S" type="Area2D" parent="." unique_id=1439086429]
-visible = false
 collision_layer = 4
 collision_mask = 8
 script = ExtResource("20_wpjfl")
@@ -948,7 +945,6 @@ position = Vector2(-1, 0)
 shape = SubResource("RectangleShape2D_fs7ks")
 
 [node name="hit_E" type="Area2D" parent="." unique_id=149624601]
-visible = false
 collision_layer = 4
 collision_mask = 8
 script = ExtResource("20_wpjfl")

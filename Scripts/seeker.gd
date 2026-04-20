@@ -31,6 +31,15 @@ var last_direction := "S"
 
 var hitboxes := {}
 
+# --- Impact / knockback state ---
+var is_knocked_back: bool = false
+var knock_velocity: Vector2 = Vector2.ZERO
+var knock_timer: float = 0.0
+const KNOCK_DURATION: float = 0.12
+
+# --- Flash shader ---
+var shader_mat: ShaderMaterial
+
 # ---------------------------------------------------
 # READY
 # ---------------------------------------------------
@@ -56,6 +65,22 @@ func _ready() -> void:
 	call_deferred("seeker_setup")
 	healthbar.max_value = health.max_health
 	healthbar.value = health.max_health
+
+	# Flash shader
+	var shader = Shader.new()
+	shader.code = """
+		shader_type canvas_item;
+		uniform float flash_amount : hint_range(0.0, 1.0) = 0.0;
+		void fragment() {
+			vec4 col = texture(TEXTURE, UV);
+			col.rgb = mix(col.rgb, vec3(1.0), flash_amount * col.a);
+			COLOR = col;
+		}
+	"""
+	shader_mat = ShaderMaterial.new()
+	shader_mat.shader = shader
+	animated_sprite_2d.material = shader_mat
+
 # ---------------------------------------------------
 # INIT NAV
 # ---------------------------------------------------
@@ -67,7 +92,17 @@ func seeker_setup():
 # ---------------------------------------------------
 # PHYSICS LOOP
 # ---------------------------------------------------
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
+	# Handle knockback
+	if is_knocked_back:
+		velocity = knock_velocity
+		knock_timer -= delta
+		if knock_timer <= 0.0:
+			is_knocked_back = false
+			knock_velocity = Vector2.ZERO
+		move_and_slide()
+		return
+
 	if not player_in_range:
 		velocity = Vector2.ZERO
 		move_and_slide()
@@ -100,6 +135,21 @@ func _physics_process(_delta: float) -> void:
 
 	update_direction(dir)
 	play_animation("run")
+
+# ---------------------------------------------------
+# IMPACT KNOCKBACK (called externally by hitbox/hurtbox)
+# ---------------------------------------------------
+func apply_knockback(from_position: Vector2, force: float = 250.0) -> void:
+	var dir = (global_position - from_position).normalized()
+	knock_velocity = dir * force
+	knock_timer = KNOCK_DURATION
+	is_knocked_back = true
+	# White flash
+	if shader_mat:
+		shader_mat.set_shader_parameter("flash_amount", 1.0)
+		await get_tree().create_timer(0.08).timeout
+		if shader_mat:
+			shader_mat.set_shader_parameter("flash_amount", 0.0)
 
 # ---------------------------------------------------
 # ATTACK
@@ -159,15 +209,20 @@ func _on_detection_body_exited(body):
 func _on_health_changed(new_health: int, max_health: int) -> void:
 	print("Enemy HP: %d / %d" % [new_health, max_health])
 	healthbar.value = new_health
-@onready var label: Label = $Control/Label
-	
+
 func _on_died() -> void:
 	set_physics_process(false)
 	_disable_all_hitboxes()
 	$hurtbox/CollisionShape2D2.set_deferred("disabled", true)
 	animated_sprite_2d.play("dying_" + last_direction)
+
+	# Drop baraka
+	var drop = randi_range(1, 2)
+	var game = get_tree().get_first_node_in_group("main_game")
+	if game and game.has_method("add_baraka"):
+		game.add_baraka(drop)
+
 	await animated_sprite_2d.animation_finished
-	
 	queue_free()
 
 # ---------------------------------------------------

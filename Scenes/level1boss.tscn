@@ -1,14 +1,13 @@
-[gd_scene format=4 uid="uid://3kdr6c0vv5c7"]
+[gd_scene format=4 uid="uid://cfphs6snuoii3"]
 
 [ext_resource type="Script" uid="uid://dnqx1xwue70wg" path="res://Scripts/main_game.gd" id="1_kdf4n"]
-[ext_resource type="PackedScene" uid="uid://bh72373a0a2ui" path="res://Scenes/player.tscn" id="2_br6bn"]
+[ext_resource type="PackedScene" path="res://Scenes/player.tscn" id="2_br6bn"]
 [ext_resource type="Texture2D" uid="uid://dm6cmy7foes7y" path="res://Tiles/L1Map/TX Tileset Grass.png" id="3_jfxi8"]
 [ext_resource type="Texture2D" uid="uid://iyk76ks3420v" path="res://Tiles/L1Map/TX Tileset Stone Ground.png" id="4_i3xhk"]
 [ext_resource type="Texture2D" uid="uid://12imbg3y7l7h" path="res://Tiles/L1Map/TX Tileset Wall.png" id="5_ybqt8"]
 [ext_resource type="Texture2D" uid="uid://bxmfvu5wykkgp" path="res://Tiles/L1Map/TX Props.png" id="6_locso"]
 [ext_resource type="PackedScene" uid="uid://dkalxe8appf30" path="res://Scenes/mage_guardian.tscn" id="9_c4qi2"]
 [ext_resource type="PackedScene" uid="uid://b4ty2tnewtj3o" path="res://Scenes/ui/Main_menu/fade_transition.tscn" id="10_y2gc2"]
-[ext_resource type="PackedScene" uid="uid://bds1ca5jsyd48" path="res://cutscene/Introcutscene.tscn" id="11_hb8jy"]
 [ext_resource type="PackedScene" uid="uid://dqahtiad2xby1" path="res://Scenes/info.tscn" id="11_sg2bn"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_73nn6"]
@@ -1172,9 +1171,3 @@ position = Vector2(84, -93)
 z_index = 2
 
 [node name="info" parent="." unique_id=1633229787 instance=ExtResource("11_sg2bn")]
-
-[node name="Chest" parent="." unique_id=83112387 instance=ExtResource("12_luw0l")]
-z_index = 1
-position = Vector2(268, -219)
-
-[node name="VideoStreamPlayer" parent="." unique_id=24681031 instance=ExtResource("11_hb8jy")]

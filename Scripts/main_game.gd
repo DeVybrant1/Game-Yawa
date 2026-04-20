@@ -1,14 +1,15 @@
 extends Node2D
 
-
-# Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	MusicPlayer.play()
-	$Fade_transition/AnimationPlayer.play("fade_out") 
+	add_to_group("main_game")
+	$Fade_transition/AnimationPlayer.play("fade_out")
 	MusicPlayer.volume_db = -10
-	# Replace with function body.
 
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(_delta: float) -> void:
 	pass
+
+# Called by enemies when they die - routes baraka to the player
+func add_baraka(amount: int) -> void:
+	var player = get_tree().get_first_node_in_group("player")
+	if player and player.has_method("add_baraka"):
+		player.add_baraka(amount)

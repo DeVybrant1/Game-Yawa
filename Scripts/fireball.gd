@@ -1,58 +1,57 @@
-## fireball.gd
-## HOW TO CREATE THE FIREBALL SCENE:
-##   1. Scene → New Scene → root type: Area2D → rename root to "Fireball"
-##   2. Add child: AnimatedSprite2D
-##        - Create a new SpriteFrames resource
-##        - Add animation "fly" with frames from res://sprites/fb-sprite.png
-##          (it's a spritesheet: set the Hframes to match the frame count)
-##        - Set Autoplay to "fly"
-##   3. Add child: CollisionShape2D → CircleShape2D, radius 7
-##   4. On the root Area2D:
-##        collision_layer = 4   (HitBox layer)
-##        collision_mask  = 8   (Player HurtBox layer)
-##   5. Attach this script to the root Area2D
-##   6. Save as res://Scenes/fireball.tscn
-##   7. Back in the boss's Inspector, assign it to "Fireball Scene"
+# fireball.gd - Attach to the "fireball" (boil) Node2D scene
+extends Node2D
 
-extends Area2D
+@onready var animated_sprite_2d: AnimatedSprite2D = $AnimatedSprite2D
+@onready var area_2d: HitBox = $HitBox
 
-@export var speed: float    = 240.0
-@export var damage: int     = 1
-@export var lifetime: float = 5.0
 
-## Set by the boss right after instantiation
+@export var speed: float = 200.0
+@export var damage: int = 1
+@export var lifetime: float = 3.0
+
 var direction: Vector2 = Vector2.RIGHT
+var hit: bool = false
+var life_timer: float = 0.0
 
 func _ready() -> void:
-	# Rotate sprite to face travel direction
-	rotation = direction.angle()
+	area_2d.body_entered.connect(_on_body_entered)
+	area_2d.area_entered.connect(_on_area_entered)
+	animated_sprite_2d.play("flying")
+	# Set collision to hit player layer (layer 2 = mask bit 2)
+	area_2d.collision_layer = 8
+	area_2d.collision_mask = 2
 
-	# Connect hit signals
-	area_entered.connect(_on_hit_area)
-	body_entered.connect(_on_hit_body)
-
-	# Auto-destroy so stray fireballs don't linger forever
-	get_tree().create_timer(lifetime).timeout.connect(queue_free)
-
-## Called by the boss to set the travel direction after instantiation.
-func set_direction(dir: Vector2) -> void:
-	direction = dir.normalized()
-	rotation  = direction.angle()
-
-func _physics_process(delta: float) -> void:
+func _process(delta: float) -> void:
+	if hit:
+		return
+	life_timer += delta
+	if life_timer >= lifetime:
+		queue_free()
+		return
 	position += direction * speed * delta
 
-func _on_hit_area(area: Area2D) -> void:
-	# Hit the player's hurtbox
-	if area is HurtBox:
-		# Don't damage the boss's own hurtbox
-		if area.get_parent() == get_parent():
-			return
-		if area.health != null:
-			area.health.take_damage(damage)
-		queue_free()
+func _do_hit() -> void:
+	if hit:
+		return
+	hit = true
+	set_process(false)
+	animated_sprite_2d.play("impact")
+	await animated_sprite_2d.animation_finished
+	queue_free()
 
-func _on_hit_body(body: Node2D) -> void:
-	# Hit a wall / static body / tilemap
-	if body is StaticBody2D or body is TileMapLayer or body is TileMap:
-		queue_free()
+func _on_body_entered(body: Node2D) -> void:
+	if hit:
+		return
+	if body.is_in_group("player"):
+		if body.has_node("health"):
+			body.get_node("health").take_damage(damage)
+	_do_hit()
+
+func _on_area_entered(area: Area2D) -> void:
+	if hit:
+		return
+	# Hit player hurtbox
+	if area.is_in_group("player_hurtbox"):
+		if area.get_parent().has_node("health"):
+			area.get_parent().get_node("health").take_damage(damage)
+		_do_hit()

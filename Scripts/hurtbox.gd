@@ -16,10 +16,21 @@ func _on_area_entered(area: Area2D) -> void:
 			print("  -> same parent, ignoring")
 			return
 		if health != null:
-			print("  -> health ref: ", health, " | calling take_damage")
+			print("  -> calling take_damage")
 			health.take_damage(area.damage)
 			received_damage.emit(area.damage)
+
+			# Knockback on the hit entity (enemies)
+			var parent = get_parent()
+			if parent.has_method("apply_knockback"):
+				var attacker = area.get_parent()
+				parent.apply_knockback(attacker.global_position)
+
+			# Impact freeze frame — triggered from the attacker (player)
+			var attacker = area.get_parent()
+			if attacker is Player:
+				attacker.trigger_impact_freeze()
 		else:
-			print("  -> health is NULL — drag the health node into hurtbox's Health slot in the Inspector")
+			print("  -> health is NULL — drag health node into hurtbox Inspector slot")
 	else:
 		print("  -> not a HitBox, it is: ", area.get_class())

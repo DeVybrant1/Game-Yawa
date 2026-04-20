@@ -1,7 +1,7 @@
 [gd_scene format=4 uid="uid://cx1p28gcjqorf"]
 
 [ext_resource type="Script" uid="uid://dnqx1xwue70wg" path="res://Scripts/main_game.gd" id="1_d1mwp"]
-[ext_resource type="PackedScene" uid="uid://bh72373a0a2ui" path="res://Scenes/player.tscn" id="2_u1b78"]
+[ext_resource type="PackedScene" path="res://Scenes/player.tscn" id="2_u1b78"]
 [ext_resource type="Texture2D" uid="uid://dm6cmy7foes7y" path="res://Tiles/L1Map/TX Tileset Grass.png" id="3_bdr3p"]
 [ext_resource type="Texture2D" uid="uid://iyk76ks3420v" path="res://Tiles/L1Map/TX Tileset Stone Ground.png" id="4_wwu6c"]
 [ext_resource type="Texture2D" uid="uid://12imbg3y7l7h" path="res://Tiles/L1Map/TX Tileset Wall.png" id="5_yymuf"]
@@ -1650,6 +1650,76 @@ target = NodePath("../../Player")
 avoidance_enabled = true
 radius = 132.68
 
+[node name="mutant11" parent="enemies" unique_id=928302866 node_paths=PackedStringArray("target") instance=ExtResource("7_nolpu")]
+z_index = 2
+position = Vector2(1001, 615)
+script = ExtResource("8_mcj63")
+target = NodePath("../../Player")
+
+[node name="NavigationAgent2D2" type="NavigationAgent2D" parent="enemies/mutant11" unique_id=1442534854]
+avoidance_enabled = true
+radius = 132.68
+
+[node name="mutant12" parent="enemies" unique_id=156142625 node_paths=PackedStringArray("target") instance=ExtResource("7_nolpu")]
+z_index = 2
+position = Vector2(76, 263)
+script = ExtResource("8_mcj63")
+target = NodePath("../../Player")
+
+[node name="NavigationAgent2D2" type="NavigationAgent2D" parent="enemies/mutant12" unique_id=1176981445]
+avoidance_enabled = true
+radius = 132.68
+
+[node name="mutant13" parent="enemies" unique_id=1284104727 node_paths=PackedStringArray("target") instance=ExtResource("7_nolpu")]
+z_index = 2
+position = Vector2(654, 155)
+script = ExtResource("8_mcj63")
+target = NodePath("../../Player")
+
+[node name="NavigationAgent2D2" type="NavigationAgent2D" parent="enemies/mutant13" unique_id=2020901344]
+avoidance_enabled = true
+radius = 132.68
+
+[node name="mutant14" parent="enemies" unique_id=1009134537 node_paths=PackedStringArray("target") instance=ExtResource("7_nolpu")]
+z_index = 2
+position = Vector2(-2, -584)
+script = ExtResource("8_mcj63")
+target = NodePath("../../Player")
+
+[node name="NavigationAgent2D2" type="NavigationAgent2D" parent="enemies/mutant14" unique_id=81759962]
+avoidance_enabled = true
+radius = 132.68
+
+[node name="mutant15" parent="enemies" unique_id=1637239177 node_paths=PackedStringArray("target") instance=ExtResource("7_nolpu")]
+z_index = 2
+position = Vector2(-720, 782)
+script = ExtResource("8_mcj63")
+target = NodePath("../../Player")
+
+[node name="NavigationAgent2D2" type="NavigationAgent2D" parent="enemies/mutant15" unique_id=567492514]
+avoidance_enabled = true
+radius = 132.68
+
+[node name="mutant16" parent="enemies" unique_id=1875882071 node_paths=PackedStringArray("target") instance=ExtResource("7_nolpu")]
+z_index = 2
+position = Vector2(-478, 396)
+script = ExtResource("8_mcj63")
+target = NodePath("../../Player")
+
+[node name="NavigationAgent2D2" type="NavigationAgent2D" parent="enemies/mutant16" unique_id=457130745]
+avoidance_enabled = true
+radius = 132.68
+
+[node name="mutant17" parent="enemies" unique_id=1175484921 node_paths=PackedStringArray("target") instance=ExtResource("7_nolpu")]
+z_index = 2
+position = Vector2(-575, -757)
+script = ExtResource("8_mcj63")
+target = NodePath("../../Player")
+
+[node name="NavigationAgent2D2" type="NavigationAgent2D" parent="enemies/mutant17" unique_id=111494135]
+avoidance_enabled = true
+radius = 132.68
+
 [node name="Djinn" type="Node" parent="." unique_id=1980470405]
 
 [node name="Fade_transition" parent="." unique_id=1839511524 instance=ExtResource("10_ocmlb")]
@@ -1677,3 +1747,13 @@ position = Vector2(173, -555)
 [node name="Chest4" parent="." unique_id=1892891701 instance=ExtResource("11_tlxhh")]
 z_index = 2
 position = Vector2(256, -553)
+
+[node name="mutant" parent="." unique_id=320353348 node_paths=PackedStringArray("target") instance=ExtResource("7_nolpu")]
+z_index = 2
+position = Vector2(1006, 1026)
+script = ExtResource("8_mcj63")
+target = NodePath("../Player")
+
+[node name="NavigationAgent2D2" type="NavigationAgent2D" parent="mutant" unique_id=1273626880]
+avoidance_enabled = true
+radius = 132.68
