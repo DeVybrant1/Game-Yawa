@@ -39,7 +39,7 @@ func _on_restart_pressed() -> void:
 
 func _on_fade_timer_timeout() -> void:
 	if button_type == "play":
-		get_tree().change_scene_to_file("res://Scenes/level1.tscn")# Replace with function body.
+		get_tree().change_scene_to_file("res://introcutscene.tscn")# Replace with function body.
 	
 	if button_type == "levels":
 		get_tree().change_scene_to_file("res://Scenes/ui/Main_menu/level_menu.tscn")

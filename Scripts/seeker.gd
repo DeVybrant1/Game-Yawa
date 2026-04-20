@@ -159,6 +159,7 @@ func _on_detection_body_exited(body):
 func _on_health_changed(new_health: int, max_health: int) -> void:
 	print("Enemy HP: %d / %d" % [new_health, max_health])
 	healthbar.value = new_health
+@onready var label: Label = $Control/Label
 	
 func _on_died() -> void:
 	set_physics_process(false)
@@ -166,6 +167,7 @@ func _on_died() -> void:
 	$hurtbox/CollisionShape2D2.set_deferred("disabled", true)
 	animated_sprite_2d.play("dying_" + last_direction)
 	await animated_sprite_2d.animation_finished
+	
 	queue_free()
 
 # ---------------------------------------------------

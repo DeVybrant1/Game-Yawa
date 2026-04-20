@@ -1,0 +1,25 @@
+[gd_scene format=3 uid="uid://ckfwrwc8v10bk"]
+
+[ext_resource type="Script" uid="uid://c4ldwpiy2kjb4" path="res://introcutscene_script.gd" id="1_5okd7"]
+[ext_resource type="VideoStream" uid="uid://diu32g3p5b322" path="res://cutscene/amaniCutscene.ogv" id="1_b3gh2"]
+
+[node name="Node2D" type="Node2D" unique_id=339782847]
+script = ExtResource("1_5okd7")
+
+[node name="VideoStreamPlayer" type="VideoStreamPlayer" parent="." unique_id=1005225237]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -388.0
+offset_top = -400.0
+offset_right = 412.0
+offset_bottom = 400.0
+grow_horizontal = 2
+grow_vertical = 2
+stream = ExtResource("1_b3gh2")
+autoplay = true
+loop = true
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=727167811]
+position = Vector2(12, 3)
+zoom = Vector2(0.8, 0.45)
