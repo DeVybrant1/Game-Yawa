@@ -861,6 +861,30 @@ region = Rect2(79.74213, 98.568954, 48.56189, 15.206245)
 atlas = ExtResource("22_wpjfl")
 region = Rect2(47.96416, 102.79101, 29.046543, 5.064842)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_pg0gw"]
+atlas = ExtResource("23_bi64h")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_5cld6"]
+atlas = ExtResource("23_bi64h")
+region = Rect2(32, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o736f"]
+atlas = ExtResource("23_bi64h")
+region = Rect2(16, 32, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_6hq81"]
+atlas = ExtResource("23_bi64h")
+region = Rect2(48, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_142e3"]
+atlas = ExtResource("23_bi64h")
+region = Rect2(64, 16, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ts2c8"]
+atlas = ExtResource("23_bi64h")
+region = Rect2(48, 32, 16, 16)
+
 [node name="Player" type="CharacterBody2D" unique_id=1439054031]
 collision_layer = 2
 script = ExtResource("1_f1ek2")
@@ -948,8 +972,53 @@ texture_under = SubResource("AtlasTexture_wcnj3")
 texture_progress = SubResource("AtlasTexture_jsob3")
 texture_progress_offset = Vector2(16, 4)
 
-[node name="barak" type="Node" parent="." unique_id=86530079 groups=["barakcount"]]
-script = ExtResource("23_bi64h")
+[node name="PauseMenu" type="Control" parent="CanvasLayer" unique_id=1808829878]
+process_mode = 2
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Resume" type="TextureButton" parent="CanvasLayer/PauseMenu" unique_id=1637338666]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -72.0
+offset_right = 20.0
+offset_bottom = -32.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(4, 4)
+texture_normal = SubResource("AtlasTexture_pg0gw")
+texture_pressed = SubResource("AtlasTexture_5cld6")
+texture_hover = SubResource("AtlasTexture_o736f")
+
+[node name="Exit" type="TextureButton" parent="CanvasLayer/PauseMenu" unique_id=105276102]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -19.0
+offset_top = -171.0
+offset_right = 157.0
+offset_bottom = 21.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(4, 4)
+texture_normal = SubResource("AtlasTexture_6hq81")
+texture_pressed = SubResource("AtlasTexture_142e3")
+texture_hover = SubResource("AtlasTexture_ts2c8")
 
 [connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
 [connection signal="area_entered" from="hurtbox" to="." method="_on_hurtbox_area_entered"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/Resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="CanvasLayer/PauseMenu/Exit" to="." method="_on_exit_pressed"]

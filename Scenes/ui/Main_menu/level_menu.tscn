@@ -130,7 +130,7 @@ theme_override_constants/shadow_offset_x = 2
 theme_override_constants/shadow_offset_y = 2
 theme_override_fonts/font = ExtResource("2_7u6g3")
 theme_override_font_sizes/font_size = 48
-text = "1"
+text = "0"
 
 [node name="RightButton" type="TextureButton" parent="control/HBoxContainer" unique_id=2003025709]
 custom_minimum_size = Vector2(32, 32)

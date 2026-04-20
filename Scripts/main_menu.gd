@@ -32,6 +32,8 @@ func _on_play_pressed() -> void:
 	$Fade_transition/AnimationPlayer.play("fade_in")
 
 func _on_restart_pressed() -> void:
+	get_tree().change_scene_to_file("res://cutscene/Introcutscene.tscn")# Replace with function body.
+
 	pass # Replace with function body.
 	
 	

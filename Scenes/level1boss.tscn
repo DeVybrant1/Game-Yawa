@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bxmfvu5wykkgp" path="res://Tiles/L1Map/TX Props.png" id="6_locso"]
 [ext_resource type="PackedScene" uid="uid://dkalxe8appf30" path="res://Scenes/mage_guardian.tscn" id="9_c4qi2"]
 [ext_resource type="PackedScene" uid="uid://b4ty2tnewtj3o" path="res://Scenes/ui/Main_menu/fade_transition.tscn" id="10_y2gc2"]
+[ext_resource type="PackedScene" uid="uid://bds1ca5jsyd48" path="res://cutscene/Introcutscene.tscn" id="11_hb8jy"]
 [ext_resource type="PackedScene" uid="uid://dqahtiad2xby1" path="res://Scenes/info.tscn" id="11_sg2bn"]
 
 [sub_resource type="NavigationPolygon" id="NavigationPolygon_73nn6"]
@@ -1171,3 +1172,9 @@ position = Vector2(84, -93)
 z_index = 2
 
 [node name="info" parent="." unique_id=1633229787 instance=ExtResource("11_sg2bn")]
+
+[node name="Chest" parent="." unique_id=83112387 instance=ExtResource("12_luw0l")]
+z_index = 1
+position = Vector2(268, -219)
+
+[node name="VideoStreamPlayer" parent="." unique_id=24681031 instance=ExtResource("11_hb8jy")]
